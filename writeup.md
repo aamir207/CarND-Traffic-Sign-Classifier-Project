@@ -139,14 +139,27 @@ If a well known architecture was chosen:
 
 ### Test a Model on New Images
 
-#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. German traffic signs found on web with discussions of qualities
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
+Before I discuss the performance expectations on individual images I believe the noise introduced by resizing interpolation might hinder classification performance. Additionally background details like trees in the 30km/h image might be another factor that affects performance.
+
+The first 2 images are speed limit signs. I expect my model to do a pretty good job of classifying these as the LeNet architecture does a good job of  classifying character based on it's performance on the MNIST data.
+
+![alt text][image4] ![alt text][image5] 
+
+I expect the bumpy road image to be more difficult for the model to classify as it contains elements that overlap with other road signs. Additionally, looking at the histogram for the training set the bumpy road class is under-represented in the dataset and needs to be augmented. The dataset contains a much larger number of examples for the road work sign, which might explain why the road work sign is assigned the the highest softmax probability for this input image. 
+
+![alt text][image6] 
+
+I expect the model to do pretty well with these input images, because they are well represented in the training dataset. The inverted triangle in the of the yield sign is a unique feature that should allow the network to classify it with high confidence. The same applies to the stop sign image
+
+
+
 ![alt text][image7] ![alt text][image8]
 
-#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+#### 2. Discussion of prediction results of web images
 
 Here are the results of the prediction:
 
@@ -158,7 +171,7 @@ Here are the results of the prediction:
 |   Yield    |   Yield    |
 |    Stop    |    Stop    |
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. The performance of the model is in  line with expectations based on the dataset distribution. The input images which are better represented in the dataset perform significantly better than the under represented class ( bumpy road). This illustrated the importance of data augmentation for deep learning, a technique that I intend to experiment with. In order to improve performance I plan on analyzing the validation/ test images that were incorrectly classified to get a better understanding of the how additional pre-processing, model architecture changes and hyper-parameter tuning might help improve prediction performance.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. 
 
